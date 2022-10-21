@@ -15,5 +15,6 @@ namespace GeneralCargoSystem.Data
         }
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<Logs> Logs { get; set; }
     }
 }

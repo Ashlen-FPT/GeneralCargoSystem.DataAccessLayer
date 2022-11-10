@@ -4,6 +4,7 @@ using GeneralCargoSystem.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GeneralCargoSystem.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221108093630_UpdatedLogsTBL")]
+    partial class UpdatedLogsTBL
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,7 +48,7 @@ namespace GeneralCargoSystem.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Vessels", (string)null);
+                    b.ToTable("Vessels");
                 });
 
             modelBuilder.Entity("GeneralCargoSystem.Models.Logs", b =>
@@ -81,7 +83,7 @@ namespace GeneralCargoSystem.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Logs", (string)null);
+                    b.ToTable("Logs");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

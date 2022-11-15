@@ -4,6 +4,7 @@ using GeneralCargoSystem.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GeneralCargoSystem.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221110065328_AddedLogisticalTransporterTBL")]
+    partial class AddedLogisticalTransporterTBL
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,108 +23,6 @@ namespace GeneralCargoSystem.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("GeneralCargoSystem.Models.GC.Commodity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("CommodityItem")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Commodities");
-                });
-
-            modelBuilder.Entity("GeneralCargoSystem.Models.GC.FPTSites", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("LocationId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SiteLocation")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("FPTSites");
-                });
-
-            modelBuilder.Entity("GeneralCargoSystem.Models.GC.GCBooking", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("BookingReference")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("CommodityId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("FPTSiteId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("LogisticalTransporterId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Registration")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Time")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("VesselId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CommodityId");
-
-                    b.HasIndex("FPTSiteId");
-
-                    b.HasIndex("LogisticalTransporterId");
-
-                    b.ToTable("GCBookings");
-                });
 
             modelBuilder.Entity("GeneralCargoSystem.Models.GC.LogisticalTransporter", b =>
                 {
@@ -142,7 +42,7 @@ namespace GeneralCargoSystem.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("LogisticalTransporters");
+                    b.ToTable("logisticalTransporters");
                 });
 
             modelBuilder.Entity("GeneralCargoSystem.Models.GC.Vessels", b =>
@@ -433,33 +333,6 @@ namespace GeneralCargoSystem.Data.Migrations
                         .HasColumnType("bit");
 
                     b.HasDiscriminator().HasValue("ApplicationUser");
-                });
-
-            modelBuilder.Entity("GeneralCargoSystem.Models.GC.GCBooking", b =>
-                {
-                    b.HasOne("GeneralCargoSystem.Models.GC.Commodity", "Commodity")
-                        .WithMany()
-                        .HasForeignKey("CommodityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("GeneralCargoSystem.Models.GC.FPTSites", "FPTSites")
-                        .WithMany()
-                        .HasForeignKey("FPTSiteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("GeneralCargoSystem.Models.GC.LogisticalTransporter", "LogisticalTransporter")
-                        .WithMany()
-                        .HasForeignKey("LogisticalTransporterId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Commodity");
-
-                    b.Navigation("FPTSites");
-
-                    b.Navigation("LogisticalTransporter");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -16,16 +16,20 @@ namespace GeneralCargoSystem.Data
         {
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer("Server=DBN-LP-ANAIDOO\\SQLEXPRESS;Database=GeneralCargoSystem;Integrated Security=true;Trusted_Connection=True;MultipleActiveResultSets=true");
-            }
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    if (!optionsBuilder.IsConfigured)
+        //    {
+        //        optionsBuilder.UseSqlServer("Server=DBN-LP-ANAIDOO\\SQLEXPRESS;Database=GeneralCargoSystem;Integrated Security=true;Trusted_Connection=True;MultipleActiveResultSets=true");
+        //    }
+        //}
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<Logs> Logs { get; set; }
         public DbSet<Vessels> Vessels { get; set; }
+        public DbSet<LogisticalTransporter> LogisticalTransporters { get; set; }
+        public DbSet<Commodity> Commodities { get; set; }
+        public DbSet<GCBooking> GCBookings { get; set; }
+        public DbSet<FPTSites> FPTSites { get; set; }
     }
 }

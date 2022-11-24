@@ -4,6 +4,7 @@ using GeneralCargoSystem.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GeneralCargoSystem.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221116063117_UpdateGCBookingTBL")]
+    partial class UpdateGCBookingTBL
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,7 +38,7 @@ namespace GeneralCargoSystem.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Commodities", (string)null);
+                    b.ToTable("Commodities");
                 });
 
             modelBuilder.Entity("GeneralCargoSystem.Models.GC.FPTSites", b =>
@@ -57,7 +59,7 @@ namespace GeneralCargoSystem.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FPTSites", (string)null);
+                    b.ToTable("FPTSites");
                 });
 
             modelBuilder.Entity("GeneralCargoSystem.Models.GC.GCBooking", b =>
@@ -70,9 +72,6 @@ namespace GeneralCargoSystem.Data.Migrations
 
                     b.Property<string>("BookingReference")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Comments")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("CommodityId")
@@ -120,6 +119,9 @@ namespace GeneralCargoSystem.Data.Migrations
                     b.Property<int>("VesselId")
                         .HasColumnType("int");
 
+                    b.Property<string>("comments")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CommodityId");
@@ -130,7 +132,7 @@ namespace GeneralCargoSystem.Data.Migrations
 
                     b.HasIndex("VesselId");
 
-                    b.ToTable("GCBookings", (string)null);
+                    b.ToTable("GCBookings");
                 });
 
             modelBuilder.Entity("GeneralCargoSystem.Models.GC.LogisticalTransporter", b =>
@@ -151,7 +153,7 @@ namespace GeneralCargoSystem.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("LogisticalTransporters", (string)null);
+                    b.ToTable("LogisticalTransporters");
                 });
 
             modelBuilder.Entity("GeneralCargoSystem.Models.GC.Vessels", b =>
@@ -178,7 +180,7 @@ namespace GeneralCargoSystem.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Vessels", (string)null);
+                    b.ToTable("Vessels");
                 });
 
             modelBuilder.Entity("GeneralCargoSystem.Models.Logs", b =>
@@ -213,7 +215,7 @@ namespace GeneralCargoSystem.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Logs", (string)null);
+                    b.ToTable("Logs");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
